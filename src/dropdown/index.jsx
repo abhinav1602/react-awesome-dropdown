@@ -5,7 +5,7 @@ import styles from './styles.scss';
 /**
  * Dropdown - params:
  * options: Array of { value: string, text: string }
- * selectedOption: value of selected option (string)
+ * value: value of selected option (string)
  * defaultOptionVisible: if true it will render a default option as the first option of the dropdown.
  * defaultOptionText: text of default option
  * onChange: function to be called when the user selects a new option of the dropdown.
@@ -14,11 +14,11 @@ class Dropdown extends Component {
   constructor(props) {
     super(props);
 
-    const { selectedOption, defaultOptionVisible } = this.props;
+    const { value, defaultOptionVisible } = this.props;
 
     const defaultOption =
       (defaultOptionVisible == undefined || defaultOptionVisible) &&
-      (!selectedOption || selectedOption == '');
+      (!value || value == '');
 
 
     this.state = {
@@ -39,15 +39,19 @@ class Dropdown extends Component {
   render() {
     const {
       options,
-      selectedOption,
-      xtraClassName = ''
+      value,
+      name = '',
+      ref = '',
+      className = ''
     } = this.props;
 
     return (
       <select
-        className={classnames(styles.dropdown, xtraClassName)}
+        className={classnames(styles.dropdown, className)}
         onChange={(event) => this._onChange(event.target.value)}
-        value={selectedOption}
+        value={value}
+        name={name}
+        ref={ref}
       >
         {this.renderDefaultOption()}
         {options.map((opt, index) => {
@@ -65,8 +69,10 @@ Dropdown.propTypes = {
     value: React.PropTypes.string.isRequired,
     text: React.PropTypes.string.isRequired
   })).isRequired,
-  xtraClassName: React.PropTypes.string,
-  selectedOption: React.PropTypes.string,
+  className: React.PropTypes.string,
+  name: React.PropTypes.string,
+  ref: React.PropTypes.string,
+  value: React.PropTypes.string,
   defaultOptionVisible: React.PropTypes.bool,
   defaultOptionText: React.PropTypes.string,
   onChange: React.PropTypes.func

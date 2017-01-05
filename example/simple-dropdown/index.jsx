@@ -7,21 +7,33 @@ class Root extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedValue: ''
+      firstDropdown: '',
+      secondDropdown: 'banana'
     };
   }
 
   render() {
     return (
-      <Dropdown
-        options={[
-          { value: 'apple', text: 'Apple' },
-          { value: 'banana', text: 'Banana' },
-          { value: 'pineapple', text: 'Pineapple' }
-        ]}
-        selectedOption={this.state.selectedValue}
-        onChange={(value) => this.setState({ selectedValue: value })}
-      />
+      <div>
+        <Dropdown
+          options={[
+            { value: 'apple', text: 'Apple' },
+            { value: 'banana', text: 'Banana' },
+            { value: 'pineapple', text: 'Pineapple' }
+          ]}
+          value={this.state.firstDropdown}
+          onChange={(value) => this.setState({ firstDropdown: value })}
+        />
+        <Dropdown
+          options={[
+            { value: 'apple', text: 'Apple' },
+            { value: 'banana', text: 'Banana' },
+            { value: 'pineapple', text: 'Pineapple' }
+          ]}
+          value={this.state.secondDropdown}
+          onChange={(value) => this.setState({ secondDropdown: value })}
+        />
+      </div>
     );
   }
 }
