@@ -21,6 +21,7 @@ class Root extends Component {
             { value: 'banana', text: 'Banana' },
             { value: 'pineapple', text: 'Pineapple' }
           ]}
+          domRef='firstDropdown'
           value={this.state.firstDropdown}
           onChange={(value) => this.setState({ firstDropdown: value })}
         />

@@ -41,7 +41,7 @@ class Dropdown extends Component {
       options,
       value,
       name = '',
-      ref = '',
+      domRef = '',
       className = ''
     } = this.props;
 
@@ -51,7 +51,7 @@ class Dropdown extends Component {
         onChange={(event) => this._onChange(event.target.value)}
         value={value}
         name={name}
-        ref={ref}
+        ref={domRef}
       >
         {this.renderDefaultOption()}
         {options.map((opt, index) => {
@@ -71,7 +71,7 @@ Dropdown.propTypes = {
   })).isRequired,
   className: React.PropTypes.string,
   name: React.PropTypes.string,
-  ref: React.PropTypes.string,
+  domRef: React.PropTypes.string,
   value: React.PropTypes.string,
   defaultOptionVisible: React.PropTypes.bool,
   defaultOptionText: React.PropTypes.string,

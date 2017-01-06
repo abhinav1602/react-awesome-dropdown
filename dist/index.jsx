@@ -29,7 +29,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 /**
  * Dropdown - params:
  * options: Array of { value: string, text: string }
- * selectedOption: value of selected option (string)
+ * value: value of selected option (string)
  * defaultOptionVisible: if true it will render a default option as the first option of the dropdown.
  * defaultOptionText: text of default option
  * onChange: function to be called when the user selects a new option of the dropdown.
@@ -43,11 +43,11 @@ var Dropdown = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Dropdown.__proto__ || Object.getPrototypeOf(Dropdown)).call(this, props));
 
     var _this$props = _this.props,
-        selectedOption = _this$props.selectedOption,
+        value = _this$props.value,
         defaultOptionVisible = _this$props.defaultOptionVisible;
 
 
-    var defaultOption = (defaultOptionVisible == undefined || defaultOptionVisible) && (!selectedOption || selectedOption == '');
+    var defaultOption = (defaultOptionVisible == undefined || defaultOptionVisible) && (!value || value == '');
 
     _this.state = {
       defaultOptionVisible: defaultOption
@@ -79,19 +79,25 @@ var Dropdown = function (_Component) {
 
       var _props = this.props,
           options = _props.options,
-          selectedOption = _props.selectedOption,
-          _props$xtraClassName = _props.xtraClassName,
-          xtraClassName = _props$xtraClassName === undefined ? '' : _props$xtraClassName;
+          value = _props.value,
+          _props$name = _props.name,
+          name = _props$name === undefined ? '' : _props$name,
+          _props$ref = _props.ref,
+          ref = _props$ref === undefined ? '' : _props$ref,
+          _props$className = _props.className,
+          className = _props$className === undefined ? '' : _props$className;
 
 
       return _react2.default.createElement(
         'select',
         {
-          className: (0, _classnames2.default)(_styles2.default.dropdown, xtraClassName),
+          className: (0, _classnames2.default)(_styles2.default.dropdown, className),
           onChange: function onChange(event) {
             return _this2._onChange(event.target.value);
           },
-          value: selectedOption
+          value: value,
+          name: name,
+          ref: ref
         },
         this.renderDefaultOption(),
         options.map(function (opt, index) {
@@ -113,8 +119,10 @@ Dropdown.propTypes = {
     value: _react2.default.PropTypes.string.isRequired,
     text: _react2.default.PropTypes.string.isRequired
   })).isRequired,
-  xtraClassName: _react2.default.PropTypes.string,
-  selectedOption: _react2.default.PropTypes.string,
+  className: _react2.default.PropTypes.string,
+  name: _react2.default.PropTypes.string,
+  ref: _react2.default.PropTypes.string,
+  value: _react2.default.PropTypes.string,
   defaultOptionVisible: _react2.default.PropTypes.bool,
   defaultOptionText: _react2.default.PropTypes.string,
   onChange: _react2.default.PropTypes.func
